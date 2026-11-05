@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll } from "framer-motion";
-import { ArrowUpRight, Award, Briefcase, Download, GraduationCap, Mail, Maximize2, Phone } from "lucide-react";
+import { ArrowUpRight, Award, Briefcase, Check, Copy, Download, GraduationCap, Mail, Maximize2, Phone } from "lucide-react";
 import { useRef, useState } from "react";
 import { bio, certifications, news, profile, projects, skills, timeline, ui, type Photo, type Project, type TimelineItem } from "@/content/data";
 import { Lightbox } from "./Effects";
@@ -343,10 +343,66 @@ export function Skills() {
   );
 }
 
+async function copyText(text: string) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    // Fallback for browsers/contexts without the async clipboard API
+    const el = document.createElement("textarea");
+    el.value = text;
+    el.setAttribute("readonly", "");
+    el.style.position = "fixed";
+    el.style.opacity = "0";
+    document.body.appendChild(el);
+    el.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(el);
+    return ok;
+  }
+}
+
+// Contact pill: the label opens the mail/phone app, the button on the right copies the value.
+function ContactChip({ href, icon, label, copyValue }: { href: string; icon: React.ReactNode; label: string; copyValue: string }) {
+  const { lang } = useSite();
+  const [copied, setCopied] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const onCopy = async () => {
+    if (!(await copyText(copyValue))) return;
+    setCopied(true);
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(() => setCopied(false), 1500);
+  };
+
+  const copyLabel = lang === "vi" ? `Sao chép ${label}` : `Copy ${label}`;
+  const copiedLabel = lang === "vi" ? "Đã sao chép" : "Copied";
+
+  return (
+    <div className="inline-flex max-w-full items-stretch overflow-hidden rounded-full border border-accent/60 bg-card text-sm font-medium text-accent backdrop-blur-md transition hover:border-accent">
+      <a href={href} className="inline-flex min-w-0 items-center gap-2 py-2 pl-4 pr-3 transition hover:bg-accent/10">
+        {icon}
+        <span className="truncate">{label}</span>
+      </a>
+      <button
+        type="button"
+        onClick={onCopy}
+        aria-label={copied ? copiedLabel : copyLabel}
+        title={copied ? copiedLabel : copyLabel}
+        className="inline-flex shrink-0 items-center gap-1.5 border-l border-accent/30 px-3 transition hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
+      >
+        {copied ? <Check size={15} /> : <Copy size={15} />}
+        {copied && <span className="text-xs">{copiedLabel}</span>}
+      </button>
+      <span className="sr-only" aria-live="polite">
+        {copied ? copiedLabel : ""}
+      </span>
+    </div>
+  );
+}
+
 export function Contact() {
   const { t } = useSite();
-  const link =
-    "inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium backdrop-blur-md transition hover:border-accent hover:text-accent";
 
   return (
     <Section id="contact" title={t(ui.nav.contact)}>
@@ -354,12 +410,13 @@ export function Contact() {
         <Card spotlight className="p-6 sm:p-8">
           <p className="max-w-xl text-lg leading-relaxed">{t(ui.contactText)}</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href={`mailto:${profile.email}`} className={`${link} border-accent/60 text-accent`}>
-              <Mail size={16} /> {profile.email}
-            </a>
-            <a href={`tel:${profile.phone.tel}`} className={`${link} border-accent/60 text-accent`}>
-              <Phone size={16} /> {profile.phone.display}
-            </a>
+            <ContactChip href={`mailto:${profile.email}`} icon={<Mail size={16} />} label={profile.email} copyValue={profile.email} />
+            <ContactChip
+              href={`tel:${profile.phone.tel}`}
+              icon={<Phone size={16} />}
+              label={profile.phone.display}
+              copyValue={profile.phone.display.replace(/\s/g, "")}
+            />
           </div>
         </Card>
       </Reveal>
