@@ -19,7 +19,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/%C4%91%E1%BB%97-th%E1%BB%8B-thanh-loan-138061409/" as string | null,
   // Put your CV at public/cv/DoThiThanhLoan_BA_CV.pdf.
   // Bump ?v= whenever the PDF changes so browsers don't serve a cached copy.
-  cv: "/cv/DoThiThanhLoan_BA_CV.pdf?v=9",
+  cv: "/cv/DoThiThanhLoan_BA_CV.pdf?v=10",
 };
 
 export const hero = {
@@ -179,7 +179,7 @@ export const timeline: TimelineItem[] = [
     org: "VinUniversity",
     short: "VinUni",
     logo: "/images/logos/vinuni.png",
-    time: { en: "Jul 2026 – Oct 2026", vi: "07/2026 – 10/2026" },
+    time: { en: "Jul 2026 – Nov 2026", vi: "07/2026 – 11/2026" },
     place: { en: "Hanoi", vi: "Hà Nội" },
     role: { en: "AI in Action – Batch 3 (Completed)", vi: "AI in Action – Batch 3 (Hoàn thành)" },
     points: [],
