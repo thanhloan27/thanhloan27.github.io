@@ -19,7 +19,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/%C4%91%E1%BB%97-th%E1%BB%8B-thanh-loan-138061409/" as string | null,
   // Put your CV at public/cv/DoThiThanhLoan_BA_CV.pdf.
   // Bump ?v= whenever the PDF changes so browsers don't serve a cached copy.
-  cv: "/cv/DoThiThanhLoan_BA_CV.pdf?v=5",
+  cv: "/cv/DoThiThanhLoan_BA_CV.pdf?v=6",
 };
 
 export const hero = {
