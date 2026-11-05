@@ -19,7 +19,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/%C4%91%E1%BB%97-th%E1%BB%8B-thanh-loan-138061409/" as string | null,
   // Put your CV at public/cv/DoThiThanhLoan_BA_CV.pdf.
   // Bump ?v= whenever the PDF changes so browsers don't serve a cached copy.
-  cv: "/cv/DoThiThanhLoan_BA_CV.pdf?v=7",
+  cv: "/cv/DoThiThanhLoan_BA_CV.pdf?v=8",
 };
 
 export const hero = {
@@ -146,7 +146,7 @@ export const timeline: TimelineItem[] = [
     org: "GSM – VinSmart Future",
     short: "GSM",
     logo: "/images/logos/gsm.png",
-    time: { en: "Sep 2026 – Oct 2026", vi: "09/2026 – 10/2026" },
+    time: { en: "Sep 2026 – Nov 2026", vi: "09/2026 – 11/2026" },
     place: { en: "Hanoi", vi: "Hà Nội" },
     role: { en: "Project Manager Intern", vi: "Project Manager Intern" },
     points: [
