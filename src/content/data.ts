@@ -103,17 +103,17 @@ export const news: { date: string; text: L }[] = [
   },
   
   {
-    date: "07/2026",
-    text: {
-      en: "Started the <b>VinUniversity – AI in Action</b> program.",
-      vi: "Bắt đầu chương trình <b>VinUniversity – AI in Action</b>",
-    },
-  },
-  {
-    date: "9/2026",
+    date: "09/2026",
     text: {
       en: "Graduated in <b>Information Systems</b> from Thuy Loi University.",
       vi: "Tốt nghiệp ngành <b>Hệ thống Thông tin</b>, Đại học Thủy Lợi.",
+    },
+  },
+  {
+    date: "07/2026",
+    text: {
+      en: "Started the <b>VinUniversity – AI in Action</b> program.",
+      vi: "Bắt đầu chương trình <b>VinUniversity – AI in Action</b>.",
     },
   },
   {
