@@ -32,6 +32,7 @@ export const hero = {
 export const activities: { src: string; alt: L }[] = [
   { src: "/images/activities/devfest-cloud-hanoi.jpg", alt: { en: "DevFest Cloud Hanoi", vi: "DevFest Cloud Hanoi" } },
   { src: "/images/activities/ai-in-action-closing.jpg", alt: { en: "AI in Action closing ceremony", vi: "Lễ bế giảng AI in Action" } },
+  { src: "/images/activities/team-presentation.jpg", alt: { en: "Presenting with my project team", vi: "Thuyết trình cùng nhóm dự án" } },
   { src: "/images/activities/devfest-team.jpg", alt: { en: "DevFest with friends", vi: "DevFest cùng bạn bè" } },
   { src: "/images/activities/gsm-pm-overview.jpg", alt: { en: "Project Management Overview at GSM", vi: "Buổi Project Management Overview tại GSM" } },
   { src: "/images/activities/devfest-audience.jpg", alt: { en: "DevFest sessions", vi: "Tham dự các phiên DevFest" } },
