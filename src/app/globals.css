@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f6f7fb;
+  --fg: #0f172a;
+  --muted: #5b6478;
+  --line: rgba(15, 23, 42, 0.1);
+  --card: rgba(255, 255, 255, 0.72);
+  --card-solid: #ffffff;
+  --accent: #0891b2;
+  --accent-2: #7c3aed;
+  --glow-1: rgba(8, 145, 178, 0.1);
+  --glow-2: rgba(124, 58, 237, 0.08);
+}
+
+.dark {
+  --bg: #070a12;
+  --fg: #e6e9f2;
+  --muted: #94a0b8;
+  --line: rgba(148, 163, 184, 0.14);
+  --card: rgba(255, 255, 255, 0.035);
+  --card-solid: #0f1424;
+  --accent: #22d3ee;
+  --accent-2: #a78bfa;
+  --glow-1: rgba(34, 211, 238, 0.12);
+  --glow-2: rgba(167, 139, 250, 0.1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --color-card-solid: var(--card-solid);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  background-image:
+    radial-gradient(60rem 40rem at 10% -10%, var(--glow-1), transparent 60%),
+    radial-gradient(50rem 35rem at 100% 10%, var(--glow-2), transparent 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* Inline rich text coming from content/data.ts */
+.rich b {
+  color: var(--fg);
+  font-weight: 600;
+}
+.rich a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.rich a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  overflow-x: clip;
+}
+
+/* ---------- Hero aurora ---------- */
+.aurora {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 900px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: linear-gradient(to bottom, black 40%, transparent);
+}
+.aurora .blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.aurora .b1 { width: 38rem; height: 38rem; left: -8rem; top: -12rem; background: var(--accent); }
+.aurora .b2 { width: 32rem; height: 32rem; right: -10rem; top: -4rem; background: var(--accent-2); animation-delay: -6s; }
+.aurora .b3 { width: 24rem; height: 24rem; left: 35%; top: 14rem; background: var(--accent-2); opacity: 0.25; animation-delay: -12s; }
+:root:not(.dark) .aurora .blob { opacity: 0.18; }
+.aurora .grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(color-mix(in srgb, var(--fg) 14%, transparent) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent);
+}
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4rem, 2rem) scale(1.08); }
+  100% { transform: translate(-3rem, 4rem) scale(0.95); }
+}
+
+/* ---------- Spotlight cards (mouse-following glow) ---------- */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), var(--accent), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.spotlight:hover::before,
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+/* ---------- Hero photo wall ---------- */
+.photo-wall {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 900px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+}
+.photo-wall .tilt {
+  position: absolute;
+  inset: -20% -10%;
+  display: flex;
+  justify-content: center;
+  /* Columns size to their content so translateY(-50%) moves exactly one copy of the list */
+  align-items: flex-start;
+  gap: 14px;
+  transform: rotate(-8deg);
+}
+.photo-wall .col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: clamp(120px, 16vw, 220px);
+  flex-shrink: 0;
+  animation: wall-up var(--dur, 60s) linear infinite;
+}
+.photo-wall .col.down {
+  animation-name: wall-down;
+}
+.photo-wall img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+/* Tints the photos so the hero text stays readable */
+.photo-wall::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 40%, color-mix(in srgb, var(--bg) 88%, transparent), transparent),
+    color-mix(in srgb, var(--bg) 68%, transparent);
+}
+.dark .photo-wall img {
+  filter: saturate(0.8);
+}
+@keyframes wall-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-50% - 7px)); }
+}
+@keyframes wall-down {
+  from { transform: translateY(calc(-50% - 7px)); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora .blob { animation: none; }
+  .photo-wall .col { animation: none; }
+}
