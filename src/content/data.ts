@@ -152,11 +152,7 @@ export const timeline: TimelineItem[] = [
     role: { en: "Project Manager Intern", vi: "Project Manager Intern" },
     points: [
       {
-        en: "Managed a personalization & recommendation project (RecSys) across a cross-functional DL&AI team covering Food, Intent/Service Ranking and Ride Destination recommendation.",
-        vi: "Quản lý dự án cá nhân hóa & gợi ý (RecSys) với team DL&AI liên chức năng, gồm gợi ý món ăn, xếp hạng Intent/Service và gợi ý điểm đến.",
-      },
-      {
-        en: "Built the project plan, tracked risks, issues and dependencies, and produced weekly progress reports for the project lead.",
+        en: "Built the project plan and tracked risks, issues, and dependencies; produced weekly progress reports for the project lead.",
         vi: "Lập kế hoạch dự án, theo dõi rủi ro, vấn đề và phụ thuộc; viết báo cáo tiến độ hàng tuần cho project lead.",
       },
       {
@@ -164,8 +160,12 @@ export const timeline: TimelineItem[] = [
         vi: "Hỗ trợ xác định phạm vi yêu cầu cho giai đoạn gợi ý món ăn trên màn hình chính, gồm kế hoạch A/B test gợi ý merchant.",
       },
       {
-        en: "Wrote the PRD/BRD for an internal AI product (details confidential); ran user surveys to find pain points and also served as tester.",
+        en: "Wrote the PRD/BRD for an internal AI product (details confidential); ran user surveys to identify pain points and also served as tester.",
         vi: "Viết PRD/BRD cho một sản phẩm AI nội bộ (thông tin bảo mật); khảo sát người dùng để tìm pain point và trực tiếp kiểm thử.",
+      },
+      {
+        en: "Took on the Business Analyst and QC role for the AI Agent project within the team.",
+        vi: "Đảm nhận vai trò Business Analyst và QC cho dự án AI Agent trong team.",
       },
     ],
     photos: [
