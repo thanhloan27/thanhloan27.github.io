@@ -19,7 +19,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/%C4%91%E1%BB%97-th%E1%BB%8B-thanh-loan-138061409/" as string | null,
   // Put your CV at public/cv/DoThiThanhLoan_BA_CV.pdf.
   // Bump ?v= whenever the PDF changes so browsers don't serve a cached copy.
-  cv: "/cv/DoThiThanhLoan_BA_CV.pdf?v=11",
+  cv: "/cv/DoThiThanhLoan_BA_CV.pdf?v=12",
 };
 
 export const hero = {
@@ -119,8 +119,8 @@ export const news: { date: string; text: L }[] = [
   {
     date: "12/2025",
     text: {
-      en: "Joined <b>International Cyber Security (ICS)</b> as a <b>Business Analyst</b>.",
-      vi: "Gia nhập <b>International Cyber Security (ICS)</b> với vai trò <b>Business Analyst</b>.",
+      en: "Joined <b>International Cyber Security (ICS)</b> as a <b>Business Analyst</b> and <b>Tester</b>.",
+      vi: "Gia nhập <b>International Cyber Security (ICS)</b> với vai trò <b>Business Analyst</b> và <b>Tester</b>.",
     },
   },
 ];
